@@ -1,0 +1,232 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('utils/swiper/swiper-bundle.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- infos bar -->
+    {{ include('public/fragments/infos_bar.html.twig') }}
+    <!-- infos bar -->
+
+    <!--Navbar-->
+    {{ include('public/fragments/nav_bar.html.twig') }}
+    <!--Navbar-->
+
+    {# events slider #}
+    <div id="events-slider" class="swiper-container view">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url('{{ asset('https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')}}'); background-size: cover; background-repeat: no-repeat;">
+                <div class="mask rgba-black-light"></div>
+                <div class="white-text text-left">
+                    <ul class="animated fadeInLeft col-md-12 list-unstyled">
+                        <li>
+                            <h1 class="h1-responsive font-weight-light text-uppercase st-font">Visit our support </h1></li>
+                        <li>
+                            <h4 class="h4-responsive font-weight-bold text-uppercase py-4">Our community can</h4>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-lg btn-indigo btn-rounded st-cstm-btn">Consulter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('{{ asset('https://images.unsplash.com/photo-1566055972289-c52022ae23b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80')}}'); background-size: cover; background-repeat: no-repeat;">
+                <div class="mask rgba-black-light"></div>
+                <div class="white-text text-left">
+                    <ul class="animated fadeInLeft col-md-12 list-unstyled">
+                        <li>
+                            <h1 class="h1-responsive font-weight-light text-uppercase st-font">Support forum</h1></li>
+                        <li>
+                            <h4 class="h4-responsive font-weight-bold text-uppercase py-4">You with any question</h4>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-lg btn-indigo btn-rounded st-cstm-btn">Consulter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev text-white"><i class="fas fa-arrow-left"></i></div>
+        <div class="swiper-button-next text-white"><i class="fas fa-arrow-right"></i></div>
+    </div>
+    {# events slider #}
+</header>
+
+<!--Main Layout-->
+<main id="events-content" class="py-5">
+    <section class="events">
+        <div class="container">
+            <h1 class="h1-responsive text-uppercase font-weight-bold st-font mb-5 text-center">Liste des <span class="st-p-color-d">evenements</span></h1>
+            <!-- event -->
+            <div class="st-event jumbotron text-left p-0">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 view overlay">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="img-fluid w-100 h-100 st-event-img" alt="Sample image">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 p-4">
+                        <span class="badge badge-primary mb-2">New</span>
+                        <h3 class="h3-responsive card-title h3 mb-4"><strong>Card title quatur ducimus obcaecati numquam molest</strong></h3>
+                        <div class="event-author d-flex justify-content-start align-items-center my-2">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="event-author-img rounded-circle img-responsive mr-1" alt="Avatar photo">
+                            <h4 class="event-author-name h4-responsive">
+                                <i class="fas fa-check-circle white-text st-p-color-d"></i>
+                                <a href="#!" title="Lien vers le profile public" class="ml-1">House Of Game</a>
+                                <span class="m-2 d-block">(Compte certifié)</span>
+                            </h4>
+                        </div>
+
+                        <p class="h5-responsive pt-4 mb-2">Date: Le 15 Mai 2020</p>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga aliquid dolorem ea distinctio exercitationem delectus qui, quas eum architecto, amet quasi accusantium, fugit consequatur ducimus obcaecati numquam molestias hic itaque accusantium doloremque laudantium, totam rem aperiam...
+                        </p>
+
+                        <p class="event-tags m-1">
+                            <span class="badge badge-info mr-1">Gaming</span><span class="badge badge-info mr-1">Hotaku</span><span class="badge badge-info mr-1">Tournoi</span>
+                        </p>
+
+                        <hr class="my-1">
+                        <div class="row d-flex justify-content-between p-2">
+                            <div class="col-xs-6 text-left p-0">
+                                <a href="{{ path('event_detail') }}" class="btn waves-effect st-cstm-btn">Details</a>
+                            </div>
+                            <div class="col-xs-6 text-right p-0">
+                                <a title="Like" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="far fa-heart st-s-color-d"></i></a>
+                                <a title="Share" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="fas fa-share-alt st-p-color-d"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- event -->
+
+            <!-- event -->
+            <div class="st-event jumbotron text-left p-0">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 view overlay">
+                        <img src="https://images.unsplash.com/photo-1495954222046-2c427ecb546d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="img-fluid w-100 h-100 st-event-img" alt="Sample image">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 p-4">
+                        <h3 class="h3-responsive card-title h3 mb-4"><strong>Card title quatur ducimus obcaecati numquamducimus obcaecati numquam molest...</strong></h3>
+                        <div class="event-author d-flex justify-content-start align-items-center my-2">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="event-author-img rounded-circle img-responsive mr-1" alt="Avatar photo">
+                            <h4 class="event-author-name h4-responsive">
+                                <a href="#!" title="Lien vers le profile public" class="ml-1">Another gaming studio</a>
+                                <span class="m-2 d-block">(Organisateur)</span>
+                            </h4>
+                        </div>
+
+                        <p class="h5-responsive pt-4 mb-2">Date: Le 23 Juin 2020</p>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga aliquid dolorem, fugit consequatur ducimus obcaecati numquam molestias hic itaque accusantium doloremque laudantium, totam rem aperiam...
+                        </p>
+
+                        <p class="event-tags m-1">
+                            <span class="badge badge-info mr-1">Hotaku</span><span class="badge badge-info mr-1">Anime</span><span class="badge badge-info mr-1">Mangas</span><span class="badge badge-info mr-1">Fast-food</span>
+                        </p>
+
+                        <hr class="my-1">
+                        <div class="row d-flex justify-content-between p-2">
+                            <div class="col-xs-6 text-left p-0">
+                                <a href="{{ path('event_detail') }}" class="btn waves-effect st-cstm-btn">Details</a>
+                            </div>
+                            <div class="col-xs-6 text-right p-0">
+                                <a title="Like" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="far fa-heart st-s-color-d"></i></a>
+                                <a title="Share" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="fas fa-share-alt st-p-color-d"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- event -->
+            <!-- event -->
+            <div class="st-event jumbotron text-left p-0">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 view overlay">
+                        <img src="https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" class="img-fluid w-100 h-100 st-event-img" alt="Sample image">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 p-4">
+                        <span class="badge badge-primary mb-2">New</span>
+                        <h3 class="h3-responsive card-title h3 mb-4"><strong>Decati numquamducimus obcaecati numquam molest</strong></h3>
+                        <div class="event-author d-flex justify-content-start align-items-center my-2">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="event-author-img rounded-circle img-responsive mr-1" alt="Avatar photo">
+                            <h4 class="event-author-name h4-responsive">
+                                <i class="fas fa-check-circle white-text st-p-color-d"></i>
+                                <a href="#!" title="Lien vers le profile public" class="ml-1">Some popular gamer</a>
+                                <span class="m-2 d-block">(Compte certifié)</span>
+                            </h4>
+                        </div>
+
+                        <p class="h5-responsive pt-4 mb-2">Date: Le 12 Juin 2020</p>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat...
+                        </p>
+
+                        <p class="event-tags m-1">
+                            <span class="badge badge-info mr-1">Gaming</span><span class="badge badge-info mr-1">Streaming</span><span class="badge badge-info mr-1">Online</span><span class="badge badge-info mr-1">Team-play</span>
+                        </p>
+
+                        <hr class="my-1">
+                        <div class="row d-flex justify-content-between p-2">
+                            <div class="col-xs-6 text-left p-0">
+                                <a href="{{ path('event_detail') }}" class="btn waves-effect st-cstm-btn">Details</a>
+                            </div>
+                            <div class="col-xs-6 text-right p-0">
+                                <a title="Like" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="far fa-heart st-s-color-d"></i></a>
+                                <a title="Share" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="fas fa-share-alt st-p-color-d"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- event -->
+        </div>
+    </section>
+</main>
+<!--Main Layout-->
+{# partenaires #}
+{{ include('public/fragments/partners_bar.html.twig') }}
+{# partenaires #}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('utils/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('js/partners.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var eventSwiper = new Swiper('#events-slider.swiper-container', {
+                loop: true,
+                effect: 'fade',
+                autoplay: {
+                    delay: 6000,
+                },
+                navigation: {
+                    nextEl: '#events-slider .swiper-button-next',
+                    prevEl: '#events-slider .swiper-button-prev',
+                },
+                pagination: {
+                    el: '#events-slider .swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="st-ms-cstm-bullet white py-1 px-3 rounded-0 ' + className + '"></span>';
+                    },
+                },
+            });
+        });
+    </script>
+{% endblock %}

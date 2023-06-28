@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="st-contact-page">
+        <header>
+            {# contact banner #}
+            <section class="st-plx container-fluid st-parallax-container">
+                <div class="st-parallax-body view">
+                    <img class="st-parallax img-fluid" src="{{ vich_uploader_asset(config, 'bannerFile') }}" alt="Bannière">
+                    <div class="mask rgba-black-strong"></div>
+                    <div class="st-parallax-content d-flex align-items-center justify-content-center text-center">
+                        <h1 class="sv-name h1-responsive text-uppercase st-font my-2 text-white">{{ config.contactFormPageTitle|raw }}</h1>
+                    </div>
+                </div>
+            </section>
+            {# contact banner #}
+        </header>
+
+        {% for flashMsg in app.flashes('app_msg') %}
+        <div class="my-3 mx-auto col-sm-6">
+            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                {{ flashMsg|raw }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!--Main Layout-->
+        <main id="contact-form-content" class="py-5 px-2">
+            {{ render(controller( 'App\\Controller\\HomeController::contactForm')) }}
+        </main>
+    </div>
+{% endblock %}

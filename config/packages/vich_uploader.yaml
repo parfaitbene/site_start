@@ -1,0 +1,39 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        uploaded_files:
+            uri_prefix: '%upload_dir%'
+            upload_destination: '%kernel.project_dir%/public%upload_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        formules_files:
+            uri_prefix: '%formules_dir%'
+            upload_destination: '%kernel.project_dir%/public%formules_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_update: true
+
+        blog_files:
+            uri_prefix: '%blog_dir%'
+            upload_destination: '%kernel.project_dir%/public%blog_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        marketing_files:
+            uri_prefix: '%marketing_dir%'
+            upload_destination: '%kernel.project_dir%/public%marketing_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        testimonials_files:
+            uri_prefix: '%testimonials_dir%'
+            upload_destination: '%kernel.project_dir%/public%testimonials_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        partners_files:
+            uri_prefix: '%partners_dir%'
+            upload_destination: '%kernel.project_dir%/public%partners_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        gallery_files:
+            uri_prefix: '%gallery_dir%'
+            upload_destination: '%kernel.project_dir%/public%gallery_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

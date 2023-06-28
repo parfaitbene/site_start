@@ -1,0 +1,25 @@
+{# parallax #}
+<section class="st-plx container-fluid st-parallax-container my-4">
+    <div class="st-parallax-body view">
+        <img class="st-parallax img-fluid" src="{{ vich_uploader_asset(module, 'imageFile') }}" alt="{{ module.title1|raw }}">
+        {% if module.addMask %}<div class="mask rgba-black-strong"></div>{% endif %}
+        <div class="st-parallax-content d-flex align-items-center justify-content-center">
+            <div class="st-parallax-text text-white text-justify col-xs-12 col-md-5 py-4 px-2">
+                {% if module.title1 %}
+                    <h1 class="text-uppercase text-center font-weight-bold">{{ module.title1|raw }}</h1>
+                {% endif %}
+                {% if module.text %}
+                <div class="text-uppercase my-md-4">
+                    {{ module.text|raw }}
+                </div>
+                {% endif %}
+                {% if module.title2 %}
+                <div class="lead font-italic text-center">
+                    {{ module.title2|raw }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{# parallax #}

@@ -1,0 +1,40 @@
+{# Secton 3 #}
+<section class="st-sp-2 st-sp my-4">
+    <div class="container-fluid black view p-0">
+        <div class="st-sp-container">
+            <div class="st-sp-content row align-items-center">
+                <div class="st-sp-col col-xs-12 col-sm-4 p-0">
+                    <div class="st-sp-col-piv view zoom">
+                        <img src="{{ vich_uploader_asset(module, 'image1File') }}" class="img-fluid " alt="{{ module.image1.name }}">
+                        <div id="st-sp-col-mask-1" class="st-sp-col-mask mask flex-center rgba-black-light"></div>
+                    </div>
+                </div>
+                <div class="st-sp-col col-xs-12 col-sm-4 p-0">
+                    <div class="st-sp-col-piv view overlay zoom">
+                        <img src="{{ vich_uploader_asset(module, 'image2File') }}" class="img-fluid " alt="{{ module.image2.name }}">
+                        <div id="st-sp-col-mask-2" class="st-sp-col-mask mask flex-center rgba-black-strong text-center">
+                            <div class="st-sp-col-text">
+                                <div class="white-text text-uppercase st-font my-3">
+                                    {{ module.text|raw }}
+                                    <a 
+                                        {% if module.buttonUrl %}href="{{ module.buttonUrl }}"{% endif %} 
+                                        {% if module.isUrlNewWindow %}target="_blank"{% endif %} 
+                                        class="btn btn-lg st-cstm-btn my-2 text-uppercase">
+                                        {{ module.buttonText|raw }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="st-sp-col col-xs-12 col-sm-4 p-0">
+                    <div class="st-sp-col-piv view zoom">
+                        <img src="{{ vich_uploader_asset(module, 'image3File') }}" class="img-fluid " alt="{{ module.image3.name }}">
+                        <div id="st-sp-col-mask-3" class="st-sp-col-mask mask flex-center rgba-black-light"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# Secton 3 #}

@@ -1,0 +1,23 @@
+<nav id="main-nav-top" class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar st-p-bg-color-d py-3">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('home') }}">
+            <img src="{{ asset('logo-start-picto.png') }}" height="40" alt="Logo START">
+            <strong>{{ config.name }}</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#st-navs" aria-controls="st-navs" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="st-navs">
+            <ul class="navbar-nav ml-auto">
+                {% for link in mainLinks %}
+                    <li class="nav-item mx-2 {%if app.request.get('_route')|lower == link.name|lower %}active{% endif %}">
+                    <a class="nav-link st-font" href="{{ link.url }}">{{ link.name }}</a>
+                    {%if app.request.get('_route')|lower == link.name|lower %}
+                    <span class="sr-only">(current)</span>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

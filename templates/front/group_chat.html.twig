@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDO-List-io | BMP</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<h1>Notre todolist</h1>
+	<div class="form-todo">
+		<form method="POST" action="/">
+			<label for="todotitle">Que devons-nous faire?</label>
+			<input id="todotitle" type="text" name="todotitle" autofocus>
+			<button id="send-btn" type="submit">Valider</button>
+		</form>
+	</div>
+	<div id="write-info" class="hide"></div>
+	<div id="info-block"></div>
+	<div id="body-list">
+		<ul id="todo-list">
+			{% if maliste and maliste|length > 0 %}
+				{% for elt in maliste %}
+					<li id="todo-elt-{{ loop.index0 }}" class="todo-elt">
+						<a index="{{ loop.index0 }}" id="del-link-{{ loop.index0 }}" class="del-link" href="#" title="Retirer de la liste"><span class="del">X</span></a>
+						<span class="todo-sender">{{ elt.sender }} a ajouté:  </span>
+						<span class="todo-content">{{ elt.todotitle }}</span>
+					</li>
+				{% endfor %}
+			{% endif %}
+		</ul>
+		<strong id="empty-list" class="{% if maliste or maliste|length > 0 %} hide {% endif %}">
+			<em>Vous n'avez aucun élément à la todolist veillez en rajouter en utilisant le formulaire ci-dessous.</em>
+		</strong>
+	</div>
+
+	<script src="http://localhost:8090/socket.io/socket.io.js"></script>
+	{# <script type="text/javascript" src="js/main.js"></script> #}
+	<script type="text/javascript">
+		var socket = io.connect('localhost:8090');
+
+		do {
+			var pseudo = prompt('Quel est votre pseudo?');
+		}while(pseudo === '' || pseudo === null);
+
+		socket.emit('client_new_chatter_signal', pseudo);
+		socket.emit('get_share_list');
+
+		var	btnSubmitMsg =  document.getElementById('send-btn'),
+			infoblock =     document.getElementById('info-block'),
+			todolist =      document.getElementById('todo-list'),
+			input_msg =     document.getElementById('todotitle'),
+			emptyMsg =      document.getElementById('empty-list'),
+			writting_info = document.getElementById('write-info');
+
+		/*Ajouts/Envois */
+		//client << Envoi message/tâche au serveur pour broadcast >>
+		var sendMsg = function(event){
+			event.preventDefault();
+			if(input_msg.value !== ''){
+				var data = {'sender': pseudo, 'todotitle': input_msg.value};
+				socket.emit('message', data);
+				input_msg.value = '';
+				input_msg.focus();
+
+				return data;
+			}
+
+			return false;
+		};
+
+		//Côté client << ajout: du message/de la tâche, à la page >>
+		function addElement(elt_list) {
+			var	current_elts = document.getElementsByTagName('li'),
+				li =           document.createElement('li'),
+				del_link =     document.createElement('a'),
+		    	sender =       document.createElement('span'),
+		    	del =          document.createElement('span'),
+		    	todoElt =      document.createElement('span');
+
+			li.setAttribute('id', 'todo-elt-'+current_elts.length);
+			li.setAttribute('class', 'todo-elt');
+			//le lien de la tâche
+			del_link.setAttribute('index',current_elts.length);
+			del_link.setAttribute('id', 'del-link-'+del_link.getAttribute('index'));
+			del_link.className = 'del-link';
+			del_link.href = '#';
+			del_link.title = 'Retirer de la liste';
+			del_link.addEventListener('click', delEvt); //on ajoute l'évènement lié à la suppresion d'une tâche de la liste
+
+			//icône suppression || contenu lien
+			del.innerHTML = 'X';
+			del.className = 'del';
+			//emetteur de la tâche
+		    sender.setAttribute('class', 'todo-sender');
+			sender.innerHTML += elt_list.sender +' a ajouté: ';
+		    //la tâche ajoutée
+			todoElt.setAttribute('class', 'todo-content');
+			todoElt.innerHTML = elt_list.todotitle;
+			//ajout au DOM
+		    del_link.appendChild(del);
+			li.appendChild(del_link);
+			li.appendChild(sender);
+			li.appendChild(todoElt);
+		    todolist.appendChild(li);
+
+			//s'il y'a déjà un élément à la liste, on retire le message d'indication "liste vide"
+			if(current_elts.length == 1){  emptyMsg.classList.add('hide'); }
+		}
+
+		//soumission formulaire via bouton
+		btnSubmitMsg.addEventListener('click', function(event) {
+			var data = sendMsg(event);
+			if(data){ addElement(data); }
+		});
+
+		//soumission formulaire via touche entrée du clavier
+		input_msg.addEventListener('keypress', function(event) {
+			//On signale que l'utilisateur est entrain d'écrire
+			socket.emit('msg_writting', pseudo);
+
+			if(event.keyCode === 13){ 
+				var data = sendMsg(event); 
+				if(data){ addElement(data); }
+			}
+		});
+
+		/* Suppressions */
+		//suppression d'un élément de la liste
+		var delEvt = function(event) {
+						event.preventDefault();
+						if(confirm('Voulez-vous vraiment retirer cette tâche de la liste?')){
+							//envoi de l'élément (identifiant) à retirer de la liste
+							socket.emit('delete', this.getAttribute('index'));
+						}
+					};
+
+		//gestion de la déconnexion
+		//ajout de l'évènement de suppression pour la prise en compte du rechargement de la page (éléments déjà présents en liste)
+		document.onreadystatechange = function () {
+			if(typeof pseudo != 'indefined'){ socket.emit('client_disconnect', pseudo); } //on signale l'utilisateur déconnecté
+
+			if(document.readyState == "complete"){
+				var del_links = document.getElementsByTagName('a');
+				if(del_links.length > 0){
+					for(var i=0; i < del_links.length; i++){
+						del_links[i].onclick = delEvt;
+					}
+				}
+			}
+		}
+
+		/* Interactions avec le serveur */
+		var initList = function (list) {
+			if(list.length >= 1){
+				for(var i=0; i < list.length; i++){
+				    addElement(list[i]);
+				}
+			}else{ emptyMsg.classList.remove('hide') }
+		};
+
+		//récupération liste partagée
+		socket.on('publish_share_list', function(shareList) {
+		    initList(shareList);
+		});
+
+		//à l'ajout d'une nouvelle tâche
+		socket.on('message', function(elt) {
+		    addElement(elt);
+		});
+
+		//à la suppresion d'un élément de la liste
+		socket.on('delete', function(newlist) {
+			todolist.innerHTML = '';
+
+			initList(newlist);
+		});
+
+		//lorsqu'un nouvel utilisateur se connecte à la liste partagée
+		socket.on('client_new_chatter_signal', function(data) {
+			if(data.name != pseudo){
+				var	p = document.createElement('p');
+				p.innerHTML = '<strong class="info"><em>'+data.message+'</em></strong>';
+			    infoblock.appendChild(p);
+
+			    setTimeout(function(){
+				    infoblock.removeChild(p);
+				}, 5000);
+			}
+
+		});
+
+		//lorsqu'un utilisateur se déconnecte
+		socket.on('client_disconnect', function(data) {
+			if(data['pseudo'] != pseudo){
+				var	p = document.createElement('p');
+				p.innerHTML = '<strong class="info"><em>'+data['msg']+'</em></strong>';
+			    infoblock.appendChild(p);
+
+			    setTimeout(function(){
+				    infoblock.removeChild(p);
+				}, 5000);
+			}
+		});
+
+
+		//<< Supplément >> - On signale aux autres utilisateurs qu'on est entrain de saisir
+		var fn_msg_write = function(data){
+			writting_info.innerHTML = data['msg_write_info'];
+			writting_info.classList.toggle('hide');
+		};
+
+		socket.on('server_msg_writting', function(data) {
+			if(data['pseudo'] != pseudo){
+				fn_msg_write(data);
+			}
+			
+			setTimeout(function(){
+			    writting_info.classList.add('hide');
+			}, 3000);
+		});
+	</script>
+</body>
+</html>

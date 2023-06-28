@@ -1,0 +1,17 @@
+{# module 4 #}
+<section class="st-mis container my-4">
+    <div class="row py-5">
+        <div class="col-md-12 text-center">
+            <h1 class="h1-responsive text-uppercase font-weight-bold st-font">{{ module.title|raw }}</h1>
+            <div class="row d-flex align-items-center">
+                <div class="col-xs-12 col-sm-6 text-justify lead wow fadeInLeft">
+                    {{ module.text|raw }}
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <img src="{{ vich_uploader_asset(module, 'imageFile') }}" class="float-left img-fluid wow fadeInRightBig slow" alt="{{ module.image.name }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# module 4 #}

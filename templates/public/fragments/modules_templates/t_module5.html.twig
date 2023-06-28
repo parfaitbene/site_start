@@ -1,0 +1,39 @@
+{# Module 5 #}
+<section class="st-options my-4">
+    <div class="container">
+        <h1 class="h1-responsive text-uppercase font-weight-bold st-font text-center mb-5">{{ module.title|raw }}</h1>
+        <div class="h6-responsive st-font text-center my-4">
+            {{ module.text|raw }}
+        </div>
+
+        {% if module.images|length %}
+        <div class="swiper-container py-5">
+            <div class="swiper-wrapper my-4">
+                {% for image in module.images|filter(img => img.active)|sort((a, b) => a.sequence <=> b.sequence) %}
+                <div class="swiper-slide col-xs-12 col-sm-4 mb-4">
+                    <div class="card collection-card z-depth-1-half">
+                        <div class="view zoom">
+                            <img src="{{ vich_uploader_asset(image, 'pjFile') }}" class="img-fluid" alt="{{ image.name }}">
+                            {% if image.url %}
+                            <div class="stripe rgba-black-strong">
+                                <a href="{{ image.url }}" class="text-white" {% if image.isUrlNewWindow %}target="_blank"{% endif %}>
+                                    {{ image.urlText|raw }}
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev text-white"><i class="fas fa-caret-left st-p-color-d"></i></div>
+            <div class="swiper-button-next text-white"><i class="fas fa-caret-right st-p-color-d"></i></div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{# Module 5 #}

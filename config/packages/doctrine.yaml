@@ -16,3 +16,17 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+
+            # Gaming:
+            #     type: annotation
+            #     dir: '%kernel.project_dir%/src/Entity/Gaming'
+            #     is_bundle: false
+            #     prefix: App\Entity\Gaming
+            #     alias: Gaming
+
+            # Media:
+            #     type: annotation
+            #     dir: '%kernel.project_dir%/src/Entity/Media'
+            #     is_bundle: false
+            #     prefix: App\Entity\Media
+            #     alias: Media

@@ -1,0 +1,30 @@
+{# Module 6 #}
+<section class="st-sp-3 st-sp st-w-bg">
+    <div class="container-fluid view p-0">
+        <div class="st-sp-container">
+            <div class="st-sp-bg-img img-fluid" style="background: url('{{ vich_uploader_asset(module, 'bgImageFile') }}') no-repeat;background-size: cover;background-position: center;width: 100%;height: 450px;">
+                <div class="mask rgba-black-strong"></div>
+            </div>
+            <div class="st-sp-content row align-items-center py-2">
+                <div class="st-sp-col col-xs-12 col-sm-4">
+                    <img src="{{ vich_uploader_asset(module, 'image1File') }}" alt="{{ module.image1.name }}" class="img-fluid wow fadeInRight">
+                </div>
+                <div class="st-sp-col col-xs-12 col-sm-4 text-center">
+                    <div class="sec-text my-2 text-white text-uppercase font-weight-bold">
+                        {{ module.text|raw }}
+                    </div>
+                    <a 
+                        {% if module.buttonUrl %}href="{{ module.buttonUrl }}"{% endif %} 
+                        {% if module.isUrlNewWindow %}target="_blank"{% endif %} 
+                        class="btn btn-lg st-cstm-btn my-2">
+                        {{ module.buttonText|raw }}
+                    </a>
+                </div>
+                <div class="st-sp-col col-xs-12 col-sm-4">
+                    <img src="{{ vich_uploader_asset(module, 'image2File') }}" alt="{{ module.image2.name }}" class="img-fluid  wow fadeInLeft">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# Module 6 #}

@@ -1,0 +1,35 @@
+{# testimonial #}
+{% if module.testimonials|length %}
+<section class="st-testimonial py-4">
+    <div class="container">
+        <h1 class="h1-responsive text-uppercase font-weight-bold st-font my-5 text-center">{{ module.title|raw }}</h1>
+        <div class="st-tsm swiper-container">
+            <div class="swiper-wrapper">
+                {% for testimonial in module.testimonials|filter(t => t.active)|sort((a, b) => a.sequence <=> b.sequence) %}
+                <div class="swiper-slide tsm-elt">
+                    <div class="row text-center d-flex justify-content-center">
+                        <div class="col-xs-12 tsm-p-img">
+                            <img src="{{ vich_uploader_asset(testimonial, 'imageFile') }}" class="rounded-circle img-responsive m-auto" alt="{{ testimonial.title1 ~" - "~ testimonial.title2 }}">
+                        </div>
+                        <div class="col-xs-12 tsm-p-text my-2 px-2">
+                            <div class="tsm-p-text-container m-auto">
+                                <i class="quote fas fa-quote-left st-p-color-d mx-2"></i>
+                                {{ testimonial.text|raw }}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 tsm-p-title text-center">
+                            <h4 class="font-weight-bold my-2">{{ testimonial.title1 }}</h4>
+                            <h6 class="font-weight-bold my-2">{{ testimonial.title2 }}</h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="swiper-button-prev text-white"><i class="fas fa-caret-left st-p-color-d"></i></div>
+            <div class="swiper-button-next text-white"><i class="fas fa-caret-right st-p-color-d"></i></div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{# end testimonial #}

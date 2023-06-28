@@ -1,0 +1,23 @@
+{# Module - Marketing #}
+<section class="st-bonus grey lighten-4 py-4">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            {% for block in module.blocks|filter(b => b.active) %}
+            <div class="st-bonus-elt my-4 col-xs-12 col-sm-3 mx-auto">
+                <div class="card card-image" style="background-image: url('{{ vich_uploader_asset(block, 'imageFile') }}'); background-position: 50%; background-size: cover;">
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-3 px-3">
+                        <div>
+                            <h4 class="font-weight-bold">
+                                {% if block.icon %}<i class="{{ block.icon }}"></i>{% endif %} {{ block.title1|raw }}
+                            </h4>
+                            <h5 class="card-title pt-2">{{ block.title2|raw }}</h5>
+                            {{ block.text|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>  
+{# Module - Marketing #}

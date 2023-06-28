@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('utils/swiper/swiper-bundle.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if slides|length %}
+        <header class="st-main-header">
+            <!-- main slider -->
+            {% include('public/fragments/main_slider.html.twig') with {'slider': slider, 'slides': slides} %}
+            <!-- main slider -->
+        </header>
+    {% endif %}
+
+    <!--Main Layout-->
+    <main id="main-content">
+        {# --Specialities-- #}
+        {% if activities|length %}
+        <section id="st-specialities">
+            <div class="container">
+                <div class="row">
+                    {% for activity in activities|filter(a => a.active) %}
+                    <div class="col-xs-12 col-md-4 mx-auto">
+                        <div class="st-sp-elt text-center p-4 wow fadeInDown" data-wow-delay="0.5s">
+                            <div class="my-2"><i class="{{ activity.icon }} fa-3x py-2"></i></div>
+                            <div class="my-2 py-3"><span class="px-5 py-3 border rounded-pill font-weight-bold text-uppercase hoverable">{{ activity.name }}</span></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {# --Specialities-- #}
+        {{ include('public/fragments/content.html.twig') }}
+    </main>
+    <!--Main Layout-->
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('utils/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/partners.js') }}" type="text/javascript"></script>
+{% endblock %}

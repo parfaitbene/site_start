@@ -1,0 +1,33 @@
+<div class="main-slider swiper-container view">
+    <div class="swiper-wrapper">
+        {% for slide in slides %}
+        <div class="swiper-slide" style="background-image: url('{{ vich_uploader_asset(slide, 'imageFile') }}');">
+            <div class="mask rgba-black-light"></div>
+            <div class="white-text text-left">
+                <ul class="animated fadeInUp col-md-12 list-unstyled">
+                    {% if slide.title1 %}
+                    <li>
+                        <h1 class="h1-responsive font-weight-light text-uppercase st-font">{{ slide.title1 }}</h1>
+                    </li>
+                    {% endif %}
+                    {% if slide.title2 %}
+                    <li>
+                        <h4 class="h4-responsive font-weight-bold text-uppercase py-4">{{ slide.title2 }}</h4>
+                    </li>
+                    {% endif %}
+                    {% if slide.buttonUrl %}
+                    <li>
+                        <a {% if slide.buttonUrl %} target="{{ slide.isUrlNewWindow }}" {% endif %} href="{{ slide.buttonUrl }}" class="btn btn-lg btn-indigo btn-rounded st-cstm-btn">{{ slide.buttonText }}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="swiper-pagination"></div>
+    
+    <div class="swiper-button-prev text-white"><i class="fas fa-arrow-left"></i></div>
+    <div class="swiper-button-next text-white"><i class="fas fa-arrow-right"></i></div>
+</div>

@@ -1,0 +1,16 @@
+<h1><strong>Nouvelle réservation</strong></h1>
+
+<p>
+    Une réseravtion au nom de <strong>{{ reservation.name }}</strong> vient d'être effectuée
+    pour la formule <strong><em>{{ reservation.formule.name }}.</em></strong><br>
+    
+    Téléphone du contact: <strong>{{ reservation.phone }}</strong><br>
+    {% if reservation.email %}
+    Email du contact: <a href="mailto:{{ reservation.email }}">{{ reservation.email }}</a><br>
+    {% endif %}
+    Console réservée: <strong>{{ reservation.console }}</strong><br>
+    Ecran réservé: <strong>{{ reservation.screen }}</strong><br>
+    Durée de la réservation: <strong>{{ reservation.duration }}H</strong><br>
+    Montant: <strong> {{ reservation.duration * reservation.screen.price }} FCFA</strong>.<br>
+    {% if reservation.message %}Message laissé par le contact: <em>{{ reservation.message }}</em>{% endif %}
+</p>

@@ -1,0 +1,30 @@
+{# partenaires #}
+{% set liste = module.partners|filter(p => p.active) %}
+
+{% if liste|length %}
+<div class="st-partners py-5 st-p-bg-color-d">
+    <div class="container">
+        <div class="row">
+            <div class="st-partners-slider swiper-container">
+                <div class="swiper-wrapper">
+                    {% for partner in liste|sort((a, b) => a.sequence <=> b.sequence) %}
+                    <div class="st-partner col-xs-12 col-sm-3 col-md-3 col-lg-3 px-1 px-2 swiper-slide mx-auto">
+                        {% if partner.url %}
+                        <a href="{{ partner.url }}" target="_blank" title="{{ partner.name|raw }}" class="st-partner-link d-block">
+                            <img src="{{ vich_uploader_asset(partner, 'imageFile') }}" alt="{{ partner.name }}" title="{{ partner.name }}" class="st-partner-logo img-fluid">
+                        </a>
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(partner, 'imageFile') }}" alt="{{ partner.name }}" title="{{ partner.name }}" class="st-partner-logo img-fluid">
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="swiper-button-prev text-white"><i class="fas fa-caret-left"></i></div>
+                <div class="swiper-button-next text-white"><i class="fas fa-caret-right"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{# partenaires #}

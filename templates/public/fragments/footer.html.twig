@@ -1,0 +1,104 @@
+<!-- Footer -->
+<footer class="page-footer font-small pt-4 st-p-bg-color">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3 text-left">
+                <!-- Content -->
+                <a class="navbar-brand" href="{{ path('home') }}">
+                    <img src="{{ asset('logo-start-picto.png') }}" height="40" alt="Logo START">
+                    <strong>{{ config.name }}</strong>
+                </a>
+                <div>
+                    <ul class="list-unstyled text-left start-infos">
+                        <li><i class="fas fa-map-marker-alt mx-2"></i> {{ config.localisation|raw }}</li>
+                        <li><i class="fas fa-phone-alt mx-2"></i> {{ config.contact|raw }}</li>
+                        <li><i class="fas fa-envelope mx-2"></i> Email: <a href="mailto:{{ config.email }}">{{ config.email }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+                <!-- Links -->
+                <h5 class="text-uppercase text-left font-weight-light st-font mb-4">Liens utiles</h5>
+
+                <ul class="list-unstyled text-left">
+                    <li class="st-f-elt">
+                        <a href="{{ path('gallery') }}" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Galerie</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="#!" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Publications</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="{{ path('contact') }}" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+                <!-- Links -->
+                <h5 class="text-uppercase text-left font-weight-light st-font mb-4">Communaute</h5>
+
+                <ul class="list-unstyled text-left">
+                    <li class="st-f-elt">
+                        <a href="#!" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Blog</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="{{ path('events') }}" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Evenements</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="#!" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Tournoi</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="#!" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Challenges</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="#!" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Mon compte</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="{{ path('login' ) }}" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Connexion</a>
+                    </li>
+                    <li class="st-f-elt">
+                        <a href="{{ path('logout') }}" class="st-font st-f-link"><i class="fas fa-angle-right"></i> Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+            <hr class="clearfix w-100 d-md-none pb-3">
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+    <div class="container">
+        <!-- Grid row-->
+        <div class="row">
+            <!-- Grid column -->
+            <div id="st-socials-links" class="col-md-12 py-3 text-center">
+                <p class="mb-3 text-uppercase font-weight-light st-font">Retrouvez nous sur:</p>
+                <div>
+                    {% for sn in socialNetworks %}
+                        <a title="{{ sn.name }}" href="{{ sn.url }}" target="_blank" class="btn-floating btn-lg mx-2 waves-effect z-depth-1 rounded-circle white st-p-color-d" type="button" role="button"><i class="{{ sn.icon }}"></i></a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+    </div>
+    <!-- Grid row-->
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-4 st-p-bg-color-d">© 2019 - {{ 'now'|date('Y') }} Copyright:
+        <a href="{{ path('home') }}"> {{ config.name }}</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->

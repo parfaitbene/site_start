@@ -1,0 +1,49 @@
+{# Module articles #}
+<section class="last-articles">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="h1-responsive text-uppercase font-weight-bold st-font my-5 text-center">{{ module.title|raw }}</h1>
+                <div class="row d-flex align-items-center">
+                    {% set liste = module.articles %}
+                    {% if not module.articles|length %}
+                        {% set liste = lastArticles %}
+                    {% endif %}
+                        
+                    {% for article in liste|filter(a => a.isPublished) %}
+                    <div class="st-art mb-5 col-xs-12 col-md-4 mx-auto">
+                        <div class="card mx-2">
+                            <div class="view overlay zoom">
+                                <img class="card-img-top" src="{{ vich_uploader_asset(article, 'imageFile') }}"
+                                     alt="Card image cap">
+                                <a href="{{ path('blog_article', {'slug': article.slug}) }}">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body text-center">
+                                <h4 class="card-title text-truncate text-left" title="{{ article.name|raw }}">
+                                {% if article.name|length <= 35 %}
+                                    {{ article.name|raw }}
+                                {% else %}
+                                    {{ article.name|slice(0, 35)|raw }}...
+                                {% endif %}
+                                </h4>
+                                <div class="card-text text-justify">
+                                    {% if article.text|length <= 105 %}
+                                    {{ article.text|raw }}
+                                    {% else %}
+                                    {{ article.text|slice(0, 105)|raw }}...
+                                    {% endif %}
+                                </div>
+                                <a href="{{ path('blog_article', {'slug': article.slug}) }}" class="btn st-cstm-btn">Consulter</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# Module articles #}

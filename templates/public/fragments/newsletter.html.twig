@@ -1,0 +1,43 @@
+<!-- Newsletter -->
+<section id="st-newsletter" class="py-5 grey lighten-4">
+    <div class="container text-center">
+        <h1 class="h1-responsive text-uppercase font-weight-bold st-font mb-5">Notre <span class="st-p-color-d">newsletter</span></h1>
+        {{ form_start(form, {'method': 'POST', 'action': url('newsletter_save'), 'attr': {'id': 'form-newsletter'}}) }}
+            {{ form_errors(form) }}
+            <div class="row d-flex justify-content-center wow fadeInLeftBig" data-wow-delay="0.5s">
+                <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4 px-xs-1 p-sm-0">
+                    <div class="md-form m-1">
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control validate', 'autocomplete': 'email', 'required': 'required'}}) }}
+                        <label for="form1" data-error="erreur" data-success="ok">adresse@mail.com</label>
+                        {{ form_errors(form.email) }}
+                    </div>          
+                </div>
+                <div class="col-xs-12 col-md-3 col-sm-4 col-lg-2 p-0">
+                    <button type="submit" class="btn st-cstm-btn m-0 waves-effect waves-light"><i class="fas fa-envelope"></i> Souscrire</button>
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="nsltModal" tabindex="-1" role="dialog" aria-labelledby="myModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModal">Newsletter</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Enregistrement...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>    
+<!-- Newsletter -->

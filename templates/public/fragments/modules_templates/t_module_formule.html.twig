@@ -1,0 +1,39 @@
+{# Formules #}
+<section class="prods-servs grey lighten-4 my-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="h1-responsive text-uppercase font-weight-bold st-font my-5 text-center">{{ module.title|raw }}</h1>
+                {% if module.formules|length %}
+                <div class="row d-flex align-items-center">
+                    {% for formule in module.formules|filter(f => f.active)|sort((a, b) => a.sequence <=> b.sequence) %}
+                    <div class="st-ps-ev mb-5 col-xs-12 col-md-4 mx-auto">
+                        <div class="card mx-2 hoverable wow fadeInDown" data-wow-delay="1s">
+                            <h4 class="h4-responsive card-title text-uppercase font-weight-bold st-p-color-d st-font text-center my-4">{{ formule.name|raw }}</h4>
+                            <div class="view overlay zoom">
+                                <img class="card-img-top rounded-0" src="{{ vich_uploader_asset(formule, 'imageFile') }}" alt="{{ formule.name }}">
+                                <a href="{{ path('formules', {'slug': formule.slug}) }}">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="h3 text-center my-2"><span class="badge bg-primary">{{ formule.price|format_currency('XAF', locale='cm') }}</span></p>
+                                <div class="card-text">
+                                    {% if formule.intro|length <= 105 %}
+                                    {{ formule.intro|raw }}
+                                    {% else %}
+                                    {{ formule.intro|slice(0, 105)|raw }}...
+                                    {% endif %}
+                                </div>
+                                <a href="{{ path('formules', {'slug': formule.slug}) }}" class="btn st-cstm-btn">Reserver</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{# Formules #}

@@ -1,0 +1,43 @@
+{# POSITION HOME-TOP #}
+{% for module in modulesTop %}
+    {% if module.type == 'MODULE1' %}
+        {% include ('public/fragments/modules_templates/t_module1.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE2' %}
+        {% include ('public/fragments/modules_templates/t_module2.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE3' %}
+        {% include ('public/fragments/modules_templates/t_module3.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE4' %}
+        {% include ('public/fragments/modules_templates/t_module4.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE5' %}
+        {% include ('public/fragments/modules_templates/t_module5.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE6' %}
+        {% include ('public/fragments/modules_templates/t_module6.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE_PARALLAX' %}
+        {% include ('public/fragments/modules_templates/t_module_parallax.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE_FORMULE' %}
+        {% include ('public/fragments/modules_templates/t_module_formule.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE_ARTICLE' %}
+        {{ render(controller( 'App\\Controller\\BlogController::moduleArticle', {'module': module})) }}
+    {% endif %}
+    {% if module.type == 'MODULE_MARKETING_BLOCK' %}
+        {% include ('public/fragments/modules_templates/t_module_marketing.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE_TESTIMONIAL' %}
+        {% include ('public/fragments/modules_templates/t_module_testimonial.html.twig') with {'module': module} %}
+    {% endif %}
+    {% if module.type == 'MODULE_PARTNER' %}
+        {% include ('public/fragments/modules_templates/t_module_partner.html.twig') with {'module': module} %}
+    {% endif %}
+{% endfor %}
+
+{# Contact us #}
+{{ render(controller( 'App\\Controller\\HomeController::contactForm')) }}
+{# Contact us #}

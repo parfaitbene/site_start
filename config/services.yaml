@@ -4,6 +4,19 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.contact.email: 'contact@start237.com'
+    app.info.email: 'info@start237.com'
+    app.contact.name: 'START GAMES'
+
+    upload_dir: /uploads/files
+    blog_dir: /uploads/blog
+    formules_dir: /uploads/formules
+    marketing_dir: /uploads/marketing
+    testimonials_dir: /uploads/testimonials
+    partners_dir: /uploads/partners
+    gallery_dir: /uploads/gallery
+    gallery_thumbnails_dir: /uploads/gallery/thumbnails
+
 
 services:
     # default configuration for services in *this* file
@@ -14,13 +27,17 @@ services:
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/Controller'
+        resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed

@@ -1,0 +1,16 @@
+<div id="st-h-infos" class="py-3 px-1 black white-text">
+    <div class="container">
+        <div class="row d-flex justify-content-md-between justify-content-sm-center">
+            <div class="col-xs-12 col-md-6 text-md-left text-center">
+                <i class="fas fa-map-marker-alt white-text px-1"></i> 
+                {{ config.localisation }}
+            </div>
+            <div class="col-xs-12 col-md-6 text-md-right text-center">
+                {% for sn in socialNetworks %}
+                <a title="{{ sn.name }}" class="white-text px-1" href="{{ sn.url }}"><i class="{{ sn.icon }}"></i></a>
+                {% endfor %}
+                <i class="fas fa-envelope px-1"></i> Email: <a href="mailto:{{ config.email }}">{{ config.email }}</a>
+            </div>
+        </div>
+    </div>
+</div>

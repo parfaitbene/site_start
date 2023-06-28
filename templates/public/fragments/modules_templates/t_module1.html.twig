@@ -1,0 +1,25 @@
+{# Secton 1 #}
+<section class="st-sp-1 st-sp st-w-bg my-4">
+    <div class="container-fluid view p-0">
+        <div class="st-sp-container">
+            <div class="st-sp-bg-img img-fluid" style="background: url('{{ vich_uploader_asset(module, 'bgImageFile') }}') no-repeat;background-size: cover;background-position: center;width: 100%;height: 450px;">
+                <div class="mask rgba-black-strong"></div>
+            </div>
+            <div class="st-sp-content row align-items-center py-2">
+                <div class="st-sp-col col-xs-12 col-sm-6">
+                    <img src="{{ vich_uploader_asset(module, 'imageFile') }}" alt="{{ module.buttonText|raw }}" class="img-fluid  wow fadeInLeft" data-wow-delay="1s">
+                </div>
+                <div class="st-sp-col col-xs-12 col-sm-6 wow fadeIn slow" data-wow-delay="1.5s">
+                    {{ module.text|raw }}
+                    <a 
+                        {% if module.buttonUrl %}href="{{ module.buttonUrl }}"{% endif %} 
+                        {% if module.isUrlNewWindow %}target="_blank"{% endif %} 
+                        class="btn btn-lg st-cstm-btn my-2">
+                        {{ module.buttonText|raw }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{# Secton 1 #}
